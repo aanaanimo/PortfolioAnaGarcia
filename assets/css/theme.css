@@ -42,6 +42,18 @@
    preferred = min + (max - min) × (current-vw - min-vw) / (max-vw - min-vw)
    But clamp() does this automatically! You just set the boundaries.
    -------------------------------------------------------------------------- */
+
+/* Optional local/webfont: Delight
+   - Place font file at assets/fonts/Delight.woff2 for best results.
+   - If not present, browser will use fallbacks. */
+@font-face {
+	font-family: 'Delight';
+	src: local('Delight'), url('/assets/fonts/Delight.woff2') format('woff2');
+	font-weight: 400 800;
+	font-style: normal;
+	font-display: swap;
+}
+
 :root {
 	/*
 	 * FLUID TYPOGRAPHY SCALE
@@ -77,17 +89,14 @@
 	--space-2xl: clamp(3rem, 2rem + 5vw, 6rem);              /* 48px → 96px (section padding) */
 
 	/*
-	 * COLOR PALETTE
-	 *
-	 * Dark theme with indigo accent. Limited palette = cohesive design.
-	 * Semantic naming (bg, text, accent) makes colors self-documenting.
+	 * COLOR PALETTE — Monochrome (emo) with lime accent
 	 */
-	--color-bg: #0f0f0f;              /* Near-black background */
-	--color-bg-alt: #1a1a1a;          /* Slightly lighter for depth/sections */
-	--color-text: #f5f5f5;            /* Off-white for readability (not pure white) */
-	--color-text-muted: #a0a0a0;      /* Subdued text for secondary content */
-	--color-accent: #6366f1;          /* Indigo — primary brand color */
-	--color-accent-hover: #818cf8;    /* Lighter indigo for hover states */
+	--color-bg: #070708;              /* deep near-black background */
+	--color-bg-alt: #0f0f10;          /* subtle lighter panel */
+	--color-text: #e9e9ea;            /* very light gray for readability */
+	--color-text-muted: #9a9a9c;      /* muted gray for secondary content */
+	--color-accent: #b7ff00;          /* vivid lime accent */
+	--color-accent-hover: #d6ff66;    /* lighter lime for hover states */
 
 	/*
 	 * ANIMATION TOKENS
@@ -103,7 +112,7 @@
 	--duration-normal: 0.6s;                      /* Default animation duration */
 
 	/* TYPOGRAPHY TOKENS (design tokens for typography) */
-	--font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-sans: 'Delight', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
 	--line-height-base: 1.6;
 	--font-weight-regular: 400;

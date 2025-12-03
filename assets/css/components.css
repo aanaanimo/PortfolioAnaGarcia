@@ -1,4 +1,3 @@
-
 /* --------------------------------------------------------------------------
    6. Button
    -------------------------------------------------------------------------- */
@@ -6,7 +5,7 @@
 	display: inline-block;
 	padding: var(--space-sm) var(--space-lg);
 	background: var(--color-accent);
-	color: white;
+	color: #070708; /* changed to black for better contrast against lime */
 	font-weight: 600;
 	border-radius: 8px;
 	transition: background 0.3s, transform 0.3s;
@@ -16,6 +15,7 @@
 .btn:focus {
 	background: var(--color-accent-hover);
 	transform: translateY(-2px);
+	color: #070708; /* keep text readable on hover */
 }
 
 /* --------------------------------------------------------------------------

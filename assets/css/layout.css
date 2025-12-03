@@ -1,0 +1,101 @@
+/* Layout: fixed nav offset + hero/home section */
+:root {
+	/* sensible default nav height used to offset fixed navigation */
+	--nav-height: 64px;
+}
+
+/* Make sure main content isn't hidden under the fixed navigation */
+main {
+	padding-top: var(--nav-height);
+}
+
+/* Full-screen hero / home section */
+.hero {
+	position: relative;
+	min-height: calc(100vh - var(--nav-height));
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	overflow: hidden;
+	padding: var(--space-2xl) 0;
+}
+
+/* decorative background layer for hero */
+.hero-bg {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background: linear-gradient(180deg, rgba(99,102,241,0.06) 0%, rgba(15,15,15,0.02) 60%);
+}
+
+/* Foreground content should sit above the bg and not be clipped */
+.hero-content {
+	position: relative;
+	z-index: 2;
+	max-width: 1100px;
+	padding: var(--space-lg);
+}
+
+/* Ensure CTA button is fully visible and has proper spacing */
+.btn {
+	position: relative; /* avoid being affected by parent stacking contexts */
+	z-index: 3;
+	padding: var(--space-sm) var(--space-lg);
+}
+
+/* Hero headline (más titular, acorde a la estética) */
+.hero-title {
+	font-family: 'Delight', var(--font-sans);
+	font-weight: 700;
+	font-size: var(--text-4xl);
+	line-height: 1;
+	letter-spacing: -0.01em;
+	margin: 0 0 var(--space-md);
+
+	/* Lime gradient clipped to text */
+	background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover) 70%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+
+	/* Stronger depth + subtle lime glow */
+	text-shadow: 0 10px 30px rgba(0,0,0,0.65), 0 0 18px rgba(183,255,0,0.08);
+	padding: 0 var(--space-sm);
+}
+
+.hero-subtitle {
+	font-family: 'Delight', var(--font-sans);
+	font-weight: 600;
+	font-size: var(--text-xl);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: var(--color-accent);
+	opacity: 0.95;
+	margin-bottom: var(--space-lg);
+}
+
+/* Section titles throughout the site use the display font too */
+.section-title {
+	font-family: 'Delight', var(--font-sans);
+	font-weight: var(--font-weight-semibold);
+	font-size: var(--text-3xl);
+	letter-spacing: -0.01em;
+	color: var(--color-text);
+	margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 1200px) {
+	.hero-title {
+		/* increase the headline on very large screens */
+		font-size: clamp(2.75rem, 2.25rem + 3.5vw, 5rem);
+	}
+}
+
+/* Small screens: reduce the nav offset if necessary */
+@media (max-width: 640px) {
+	:root { --nav-height: 56px; }
+	main { padding-top: var(--nav-height); }
+	.hero { padding: calc(var(--space-lg)) 0; }
+}
