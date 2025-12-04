@@ -1,4 +1,130 @@
 /* --------------------------------------------------------------------------
+   2. CSS RESET & BASE STYLES
+
+   🎓 WHY A CSS RESET?
+   Browsers apply default styles (margins, paddings, fonts) that vary between
+   browsers. A reset creates a consistent baseline so YOUR styles are in control.
+
+   💡 MODERN RESET PHILOSOPHY:
+   We're not removing ALL defaults (like the old "CSS Reset" approach).
+   Instead, we selectively normalize the most problematic differences while
+   keeping useful defaults like list markers in appropriate contexts.
+   -------------------------------------------------------------------------- */
+
+/*
+ * UNIVERSAL BOX-SIZING
+ *
+ * border-box includes padding and border in the element's total width/height.
+ * This makes sizing predictable: a 200px box stays 200px even with padding.
+ *
+ * Without this: width: 200px + padding: 20px = actual width of 240px 😱
+ * With this:    width: 200px + padding: 20px = actual width of 200px ✅
+ */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+ * SMOOTH SCROLLING
+ *
+ * Native CSS smooth scrolling for anchor links. No JavaScript needed!
+ * This is automatically disabled when prefers-reduced-motion is set.
+ */
+html {
+	scroll-behavior: smooth;
+}
+
+/*
+ * BASE TYPOGRAPHY
+ *
+ * System font stack: Uses the user's OS font for familiarity and performance.
+ * No font files to download = faster page load!
+ *
+ * Line-height 1.6 is optimal for body text readability (1.5-1.7 range).
+ */
+body {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-size: var(--text-base);  /* Uses our fluid typography variable */
+	line-height: 1.6;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+}
+
+/*
+ * RESPONSIVE IMAGES
+ *
+ * max-width: 100% prevents images from overflowing their containers.
+ * height: auto maintains aspect ratio when width changes.
+ * display: block removes the inline whitespace gap below images.
+ */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/*
+ * LINK RESET
+ *
+ * Inherit color from parent and remove underline by default.
+ * We'll add specific link styles where needed.
+ */
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   SKIP LINK (ACCESSIBILITY)
+
+   🎓 WHY SKIP LINKS?
+   Screen reader and keyboard users shouldn't have to tab through the entire
+   navigation on every page. A skip link lets them jump directly to main content.
+
+   The link is hidden off-screen until focused, then slides into view.
+   This is a WCAG 2.1 Level A requirement for accessible navigation.
+   -------------------------------------------------------------------------- */
+.skip-link {
+	position: absolute;
+	top: -100%;                       /* Hidden above viewport */
+	left: 50%;
+	transform: translateX(-50%);      /* Center horizontally */
+	background: var(--color-accent);
+	color: white;
+	padding: var(--space-sm) var(--space-md);
+	border-radius: 0 0 8px 8px;       /* Rounded bottom corners only */
+	z-index: 1000;                    /* Above everything */
+	transition: top 0.3s;
+}
+
+.skip-link:focus {
+	top: 0;  /* Slides into view when focused via keyboard */
+}
+/* --------------------------------------------------------------------------
+   3. Layout Components
+   -------------------------------------------------------------------------- */
+.container {
+	width: min(90%, 1200px);
+	margin-inline: auto;
+}
+
+.section {
+	padding: var(--space-2xl) 0;
+}
+
+.section-title {
+	font-size: var(--text-3xl);
+	font-weight: 700;
+	margin-bottom: var(--space-xl);
+	text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
    6. Button
    -------------------------------------------------------------------------- */
 .btn {
@@ -23,6 +149,60 @@
    -------------------------------------------------------------------------- */
 .about {
 	background: var(--color-bg-alt);
+}
+
+.about-container {
+	position: relative; /* permite posicionar la foto absolutamente dentro */
+	padding-top: var(--space-lg);
+}
+
+.about-profile {
+	/* Si existe ya .about-profile, estas reglas la adaptan para el efecto solicitado */
+	position: absolute;
+	top: var(--space-md);
+	right: var(--space-md);
+	width: 160px;
+	height: 160px;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 12px 30px rgba(2,6,23,0.5);
+	border: 3px solid rgba(255,255,255,0.04);
+	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));
+}
+
+.profile-photo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.about-text-col {
+	/* dejar espacio para la foto en pantallas grandes */
+	padding-right: 200px;
+}
+
+@media (min-width: 1024px) {
+	.about-profile {
+		width: 180px;
+		height: 180px;
+		top: calc(var(--space-lg) + 6px);
+		right: calc(var(--space-lg) + 6px);
+	}
+	.about-text-col { padding-right: 240px; }
+}
+
+@media (max-width: 767px) {
+	.about-profile {
+		position: static; /* se comporta como elemento normal en móvil */
+		width: 120px;
+		height: 120px;
+		margin: 0 auto var(--space-md);
+		border-radius: 12px;
+		box-shadow: 0 8px 20px rgba(2,6,23,0.35);
+	}
+	.about-text-col { padding-right: 0; }
+	.about-container { padding-top: var(--space-md); }
 }
 
 .about-grid {
@@ -407,4 +587,588 @@
 		flex-direction: column;
 		gap: var(--space-md);
 	}
+}
+
+/* Services / Pricing: fondo oscuro con tarjetas responsivas encima */
+.services {
+	background: #070708; /* fondo negro puro cercano a lo pedido */
+	color: #e6e7eb;
+}
+
+.services .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pricing-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: var(--space-md);
+	width: 100%;
+	max-width: 1100px;
+	margin-top: var(--space-md);
+	padding: var(--space-md);
+	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+	border-radius: 12px;
+}
+
+.pricing-card {
+	background: rgba(255,255,255,0.03);
+	color: inherit;
+	padding: var(--space-md);
+	border-radius: 12px;
+	text-align: center;
+	box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+	border: 1px solid rgba(255,255,255,0.03);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.pricing-card h3 { margin-top: 0; color: #ffffff; }
+.pricing-card .price {
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: var(--color-accent);
+	margin: var(--space-md) 0;
+}
+
+.pricing-card ul { list-style: none; padding: 0; margin: 0 0 var(--space-md) 0; }
+.pricing-card li { color: #d8d9db; margin-bottom: 0.5rem; }
+
+.pricing-card a.btn { align-self: center; margin-top: var(--space-sm); }
+
+/* Destacar la tarjeta popular */
+.pricing-card.popular {
+	transform: translateY(-8px);
+	border: 1px solid rgba(172,255,38,0.18); /* ligero borde acorde al acento */
+	background: linear-gradient(180deg, rgba(172,255,38,0.04), rgba(255,255,255,0.02));
+}
+
+@media (min-width: 768px) {
+	.pricing-grid { padding: var(--space-lg); }
+}
+
+/* Asegurar contraste y legibilidad del texto dentro de services */
+.services .section-title,
+.services .section-intro,
+.services .pricing-card h3,
+.services .pricing-card p {
+	color: #eceff1;
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: #acff26; /* color que quieras */
+    z-index: 9999;
+    transition: width 0.15s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   PROSE: two-column justified text (apply only to textual blocks)
+
+   Use the utility class `.prose-two-col` on any container whose textual
+   content should flow in two justified columns. We also apply the rule
+   to common textual containers to avoid changing structural elements like
+   cards or images.
+   -------------------------------------------------------------------------- */
+.prose-two-col,
+.about-text-col,
+.about-expanded,
+.section-intro,
+.project-content p,
+.detail-info p,
+.contact-content,
+.pricing-card p,
+.about-highlights,
+.lead {
+	column-width: 36rem;      /* ideal readable measure; the browser decides column-count */
+	column-gap: 2.5rem;
+	-webkit-column-width: 36rem;
+	-webkit-column-gap: 2.5rem;
+	-moz-column-width: 36rem;
+	-moz-column-gap: 2.5rem;
+	text-align: justify;      /* 'justificado al cuadrado' */
+	hyphens: auto;            /* permite dividir palabras para ajuste natural */
+}
+
+/* Ensure headings and important blocks span the full column width */
+.prose-two-col h1,
+.prose-two-col h2,
+.prose-two-col h3,
+.prose-two-col h4,
+.section-title,
+.section-intro {
+	break-inside: avoid-column;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-span: all; /* best-effort; not supported everywhere */
+	width: 100%;
+}
+
+/* Prevent cards, images and complex blocks from being split between columns */
+.project-card,
+.pricing-card,
+.detail-card,
+.about-profile {
+	break-inside: avoid-column;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+}
+
+/* Increase spacing around images that live inside prose containers */
+.prose-two-col img,
+.about-text-col img,
+.detail-info img,
+.project-content img {
+	display: block;
+	margin: 0 0 1.6rem 0; /* espacio inferior para separar de texto */
+	max-width: 100%;
+}
+
+/* If an image is placed inline to the right/left, add horizontal gap */
+.prose-two-col img[align="right"],
+.prose-two-col img.floated-right {
+	margin-left: 1.25rem;
+}
+.prose-two-col img[align="left"],
+.prose-two-col img.floated-left {
+	margin-right: 1.25rem;
+}
+
+/* Responsive: single column on small screens */
+@media (max-width: 900px) {
+	.prose-two-col,
+	.about-text-col,
+	.about-expanded,
+	.section-intro,
+	.project-content p,
+	.detail-info p,
+	.contact-content,
+	.pricing-card p {
+		column-width: auto;
+		column-count: 1;
+		column-gap: 1rem;
+		text-align: left; /* left aligned on small screens improves readability */
+	}
+}.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem; /* AQUI SE CREA EL ESPACIO */
+}
+.about-grid {
+    gap: 3.5rem;
+}
+
+/* Layout: fixed nav offset + hero/home section */
+:root {
+	/* sensible default nav height used to offset fixed navigation */
+	--nav-height: 64px;
+}
+
+/* Make sure main content isn't hidden under the fixed navigation */
+main {
+	padding-top: var(--nav-height);
+}
+
+/* Full-screen hero / home section */
+.hero {
+	position: relative;
+	min-height: calc(100vh - var(--nav-height));
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	overflow: hidden;
+	padding: var(--space-2xl) 0;
+}
+
+/* decorative background layer for hero */
+.hero-bg {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background: linear-gradient(180deg, rgba(99,102,241,0.06) 0%, rgba(15,15,15,0.02) 60%);
+}
+
+/* Foreground content should sit above the bg and not be clipped */
+.hero-content {
+	position: relative;
+	z-index: 2;
+	max-width: 1100px;
+	padding: var(--space-lg);
+}
+
+/* Ensure CTA button is fully visible and has proper spacing */
+.btn {
+	position: relative; /* avoid being affected by parent stacking contexts */
+	z-index: 3;
+	padding: var(--space-sm) var(--space-lg);
+}
+
+/* Hero headline (más titular, acorde a la estética) */
+.hero-title {
+	font-family: 'Delight', var(--font-sans);
+	font-weight: 700;
+	font-size: var(--text-4xl);
+	line-height: 1;
+	letter-spacing: -0.01em;
+	margin: 0 0 var(--space-md);
+
+	/* Lime gradient clipped to text */
+	background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover) 70%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+
+	/* Stronger depth + subtle lime glow */
+	text-shadow: 0 10px 30px rgba(0,0,0,0.65), 0 0 18px rgba(183,255,0,0.08);
+	padding: 0 var(--space-sm);
+}
+
+.hero-subtitle {
+	font-family: 'Delight', var(--font-sans);
+	font-weight: 600;
+	font-size: var(--text-xl);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: var(--color-accent);
+	opacity: 0.95;
+	margin-bottom: var(--space-lg);
+}
+
+/* Section titles throughout the site use the display font too */
+.section-title {
+	font-family: 'Delight', var(--font-sans);
+	font-weight: var(--font-weight-semibold);
+	font-size: var(--text-3xl);
+	letter-spacing: -0.01em;
+	color: var(--color-text);
+	margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 1200px) {
+	.hero-title {
+		/* increase the headline on very large screens */
+		font-size: clamp(2.75rem, 2.25rem + 3.5vw, 5rem);
+	}
+}
+
+/* Small screens: reduce the nav offset if necessary */
+@media (max-width: 640px) {
+	:root { --nav-height: 56px; }
+	main { padding-top: var(--nav-height); }
+	.hero { padding: calc(var(--space-lg)) 0; }
+}
+
+/* --------------------------------------------------------------------------
+   4. Navigation
+   -------------------------------------------------------------------------- */
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	background: rgba(15, 15, 15, 0.9);
+	backdrop-filter: blur(10px);
+	padding: var(--space-md) 0;
+}
+
+.nav-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: min(90%, 1200px);
+	margin-inline: auto;
+}
+
+.nav-logo {
+	font-size: var(--text-xl);
+	font-weight: 700;
+}
+
+.nav-links {
+	display: flex;
+	gap: var(--space-lg);
+	list-style: none;
+}
+
+.nav-links a {
+	color: var(--color-text-muted);
+	transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+	color: var(--color-accent);
+}/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}/* ==========================================================================
+   GRADE 1: VANILLA CSS PORTFOLIO DEMO
+   Scroll Architecture with IntersectionObserver + CSS scroll-timeline
+
+   🎓 LEARNING OBJECTIVES:
+   - Master CSS Custom Properties (CSS Variables) for scalable design systems
+   - Understand fluid typography using clamp() for responsive text
+   - Implement scroll-driven animations with modern CSS (no JavaScript!)
+   - Create performant animations using transform and opacity only
+   - Build accessible animations with prefers-reduced-motion
+
+   📚 PREREQUISITES:
+   - CSS basics (selectors, box model, positioning)
+   - Understanding of responsive design concepts
+   - Familiarity with CSS transitions and keyframes
+
+   ⚠️ BROWSER SUPPORT:
+   - CSS scroll-timeline: Chrome 115+, Edge 115+, Firefox 110+ (with flag)
+   - IntersectionObserver: 97%+ browser support (excellent fallback)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+
+   🎓 WHY CUSTOM PROPERTIES?
+   Custom properties (CSS variables) create a single source of truth for your
+   design values. Change one variable, update the entire site. This is the
+   foundation of a design system.
+
+   📐 THE clamp() FUNCTION EXPLAINED:
+   clamp(minimum, preferred, maximum)
+
+   Example: clamp(1rem, 0.9rem + 0.5vw, 1.125rem)
+   - minimum: 1rem (16px) — never smaller than this
+   - preferred: 0.9rem + 0.5vw — scales with viewport width
+   - maximum: 1.125rem (18px) — never larger than this
+
+   The "0.9rem + 0.5vw" creates a fluid value that grows as the viewport
+   widens. The 0.5vw adds responsiveness (0.5% of viewport width).
+
+   🧮 FORMULA FOR FLUID VALUES:
+   preferred = min + (max - min) × (current-vw - min-vw) / (max-vw - min-vw)
+   But clamp() does this automatically! You just set the boundaries.
+   -------------------------------------------------------------------------- */
+
+/* Optional local/webfont: Delight
+   - Place font file at assets/fonts/Delight.woff2 for best results.
+   - If not present, browser will use fallbacks. */
+@font-face {
+	font-family: 'Delight';
+	src: local('Delight'), url('/assets/fonts/Delight.woff2') format('woff2');
+	font-weight: 400 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	/*
+	 * FLUID TYPOGRAPHY SCALE
+	 *
+	 * This creates a harmonious type scale that smoothly adjusts between
+	 * mobile (320px) and desktop (1200px) viewports.
+	 *
+	 * Scale ratio: ~1.125 (Major Second) — subtle but professional
+	 * Each step is roughly 12.5% larger than the previous
+	 */
+	--text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);    /* 12px → 14px */
+	--text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);      /* 14px → 16px */
+	--text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);      /* 16px → 18px (body text) */
+	--text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);     /* 18px → 20px */
+	--text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);      /* 20px → 24px */
+	--text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);       /* 24px → 32px */
+	--text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);           /* 32px → 48px (section titles) */
+	--text-4xl: clamp(2.5rem, 1.75rem + 3.75vw, 4rem);       /* 40px → 64px (hero headline) */
+
+	/*
+	 * FLUID SPACING SCALE
+	 *
+	 * Consistent spacing creates visual rhythm. These values scale
+	 * proportionally with the viewport, maintaining relationships.
+	 *
+	 * Use these for margins, paddings, and gaps — NOT for widths!
+	 */
+	--space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);     /* 4px → 8px */
+	--space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);      /* 8px → 12px */
+	--space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);           /* 16px → 24px */
+	--space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);       /* 24px → 40px */
+	--space-xl: clamp(2rem, 1.5rem + 2.5vw, 4rem);           /* 32px → 64px */
+	--space-2xl: clamp(3rem, 2rem + 5vw, 6rem);              /* 48px → 96px (section padding) */
+
+	/*
+	 * COLOR PALETTE — Monochrome (emo) with lime accent
+	 */
+	--color-bg: #070708;              /* deep near-black background */
+	--color-bg-alt: #0f0f10;          /* subtle lighter panel */
+	--color-text: #e9e9ea;            /* very light gray for readability */
+	--color-text-muted: #9a9a9c;      /* muted gray for secondary content */
+	--color-accent: #b7ff00;          /* vivid lime accent */
+	--color-accent-hover: #d6ff66;    /* lighter lime for hover states */
+
+	/*
+	 * ANIMATION TOKENS
+	 *
+	 * Centralizing animation values ensures consistency and makes
+	 * global timing adjustments trivial.
+	 *
+	 * The custom easing curve creates a "gentle landing" effect:
+	 * - Fast start (0.22, 1)
+	 * - Smooth deceleration (0.36, 1)
+	 */
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);  /* "Power2.out" equivalent */
+	--duration-normal: 0.6s;                      /* Default animation duration */
+
+	/* TYPOGRAPHY TOKENS (design tokens for typography) */
+	--font-sans: 'Delight', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+	--line-height-base: 1.6;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+}
+
+/* Fondo cuadriculado lima con parallax */
+body {
+    /* Retícula más visible */
+    background-image:
+        linear-gradient(to right, rgba(183, 255, 0, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(183, 255, 0, 0.25) 1px, transparent 1px);
+
+    background-size: 32px 32px; /* tamaño del cuadrado */
+    background-attachment: fixed; /* parallax en todo el documento */
+
+    background-color: var(--color-bg); /* mantiene tu fondo oscuro */
 }

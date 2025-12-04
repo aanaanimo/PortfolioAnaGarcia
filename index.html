@@ -40,41 +40,66 @@
 
 		<!-- About Section -->
 		<section id="about" class="section about">
-			<div class="container">
-				<h2 class="section-title animate-on-scroll">About Me</h2>
-				<div class="about-grid">
-					<div class="about-text animate-on-scroll">
-						<p>
-							I'm a passionate front-end developer with 5 years of experience
-							building responsive, accessible, and performant web applications.
-						</p>
-						<p>
-							My focus is on creating seamless user experiences through clean code
-							and thoughtful design. I believe in the power of vanilla JavaScript
-							and modern CSS to create stunning interfaces without framework bloat.
-						</p>
+			<div class="container about-container">
+				<div class="about-main">
+					<div class="about-profile animate-on-scroll">
+						<img src="https://picsum.photos/240/240?grayscale" alt="Foto de perfil" class="profile-photo" loading="lazy" />
 					</div>
-					<div class="skills-grid" data-reveal-stagger>
-						<div class="skill-card">
-							<span class="skill-icon">🎨</span>
-							<h3>CSS/Sass</h3>
-							<div class="skill-bar"><div class="skill-fill" style="--fill: 95%"></div></div>
+					<div class="about-text-col animate-on-scroll">
+						<h2 class="section-title">Sobre mí</h2>
+						<p>
+							Soy desarrolladora front-end y diseñadora de interfaces con 5 años de experiencia creando experiencias accesibles,
+							responsivas y orientadas al rendimiento. Me apasiona convertir ideas complejas en interfaces claras y bellas.
+						</p>
+						<p>
+							Trabajo principalmente con HTML, CSS y JavaScript puro, cuidando la accesibilidad (A11y) y la experiencia del usuario.
+							Me interesa el desarrollo de juegos y experiencias interactivas para la web, así como la optimización y la animación.
+						</p>
+						<div class="about-highlights">
+							<div class="highlight">
+								<strong>Experiencia:</strong>
+								<ul>
+									<li>5 años como Front-End Engineer</li>
+									<li>Proyectos en e-commerce, dashboards y landing pages</li>
+								</ul>
+							</div>
+							<div class="highlight">
+								<strong>Tecnologías:</strong>
+								<p>HTML · CSS · Sass · JavaScript · WebGL básico · Canvas</p>
+							</div>
 						</div>
-						<div class="skill-card">
-							<span class="skill-icon">⚡</span>
-							<h3>JavaScript</h3>
-							<div class="skill-bar"><div class="skill-fill" style="--fill: 90%"></div></div>
-						</div>
-						<div class="skill-card">
-							<span class="skill-icon">📱</span>
-							<h3>Responsive</h3>
-							<div class="skill-bar"><div class="skill-fill" style="--fill: 98%"></div></div>
-						</div>
-						<div class="skill-card">
-							<span class="skill-icon">♿</span>
-							<h3>A11y</h3>
-							<div class="skill-bar"><div class="skill-fill" style="--fill: 85%"></div></div>
-						</div>
+					</div>
+				</div>
+
+				<div class="about-expanded animate-on-scroll">
+					<h3>Trayectoria</h3>
+					<ol class="timeline">
+						<li><strong>2021–2025:</strong> Front-End Engineer en start-ups y proyectos freelance.</li>
+						<li><strong>2019–2021:</strong> Desarrollé UIs y micro-interacciones para apps web.</li>
+						<li><strong>2018:</strong> Comencé en proyectos de game jams y prototipos en Canvas/WebGL.</li>
+					</ol>
+				</div>
+
+				<div class="skills-grid" data-reveal-stagger>
+					<div class="skill-card">
+						<span class="skill-icon">🎨</span>
+						<h3>CSS/Sass</h3>
+						<div class="skill-bar"><div class="skill-fill" style="--fill: 95%"></div></div>
+					</div>
+					<div class="skill-card">
+						<span class="skill-icon">⚡</span>
+						<h3>JavaScript</h3>
+						<div class="skill-bar"><div class="skill-fill" style="--fill: 90%"></div></div>
+					</div>
+					<div class="skill-card">
+						<span class="skill-icon">📱</span>
+						<h3>Responsive</h3>
+						<div class="skill-bar"><div class="skill-fill" style="--fill: 98%"></div></div>
+					</div>
+					<div class="skill-card">
+						<span class="skill-icon">♿</span>
+						<h3>A11y</h3>
+						<div class="skill-bar"><div class="skill-fill" style="--fill: 85%"></div></div>
 					</div>
 				</div>
 			</div>
@@ -84,43 +109,153 @@
 		<section id="projects" class="section projects">
 			<div class="container">
 				<h2 class="section-title animate-on-scroll">Featured Projects</h2>
+				<p class="section-intro animate-on-scroll">Haz clic en un proyecto para ver más detalles sobre alcance, tecnologías y decisiones de diseño.</p>
 				<div class="projects-grid" data-reveal-stagger>
-					<article class="project-card">
-						<div class="project-image">
-							<img src="https://picsum.photos/400/300?random=1" alt="E-commerce Platform" loading="lazy" />
-						</div>
-						<div class="project-content">
-							<h3>E-commerce Platform</h3>
-							<p>A fully responsive online store with cart functionality and payment integration.</p>
-							<div class="project-tags">
-								<span>HTML</span><span>CSS</span><span>JS</span>
+					<article class="project-card animate-on-scroll">
+						<a href="#project-ecommerce" class="project-link" aria-label="Ver detalles E-commerce">
+							<div class="project-image">
+								<img src="https://picsum.photos/400/300?random=1" alt="E-commerce Platform" loading="lazy" />
 							</div>
-						</div>
-					</article>
-					<article class="project-card">
-						<div class="project-image">
-							<img src="https://picsum.photos/400/300?random=2" alt="Dashboard UI" loading="lazy" />
-						</div>
-						<div class="project-content">
-							<h3>Analytics Dashboard</h3>
-							<p>Real-time data visualization dashboard with dark mode support.</p>
-							<div class="project-tags">
-								<span>CSS Grid</span><span>Charts</span><span>API</span>
+							<div class="project-content">
+								<h3>E-commerce Platform</h3>
+								<p>A fully responsive online store with cart functionality and payment integration.</p>
+								<div class="project-tags">
+									<span>HTML</span><span>CSS</span><span>JS</span>
+								</div>
+								<button class="btn btn-link">Ver proyecto →</button>
 							</div>
-						</div>
+						</a>
 					</article>
-					<article class="project-card">
-						<div class="project-image">
-							<img src="https://picsum.photos/400/300?random=3" alt="Mobile App Landing" loading="lazy" />
-						</div>
-						<div class="project-content">
-							<h3>App Landing Page</h3>
-							<p>Conversion-optimized landing page with scroll animations.</p>
-							<div class="project-tags">
-								<span>Animation</span><span>A/B Test</span><span>SEO</span>
+
+					<article class="project-card animate-on-scroll">
+						<a href="#project-dashboard" class="project-link" aria-label="Ver detalles Dashboard">
+							<div class="project-image">
+								<img src="https://picsum.photos/400/300?random=2" alt="Dashboard UI" loading="lazy" />
 							</div>
-						</div>
+							<div class="project-content">
+								<h3>Analytics Dashboard</h3>
+								<p>Real-time data visualization dashboard with dark mode support.</p>
+								<div class="project-tags">
+									<span>CSS Grid</span><span>Charts</span><span>API</span>
+								</div>
+								<button class="btn btn-link">Ver proyecto →</button>
+							</div>
+						</a>
 					</article>
+
+					<article class="project-card animate-on-scroll">
+						<a href="#project-landing" class="project-link" aria-label="Ver detalles Landing">
+							<div class="project-image">
+								<img src="https://picsum.photos/400/300?random=3" alt="Mobile App Landing" loading="lazy" />
+							</div>
+							<div class="project-content">
+								<h3>App Landing Page</h3>
+								<p>Conversion-optimized landing page with scroll animations.</p>
+								<div class="project-tags">
+									<span>Animation</span><span>A/B Test</span><span>SEO</span>
+								</div>
+								<button class="btn btn-link">Ver proyecto →</button>
+							</div>
+						</a>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- Project detail sections -->
+		<section id="project-ecommerce" class="project-detail section">
+			<div class="container">
+				<article class="detail-card">
+					<h2>E-commerce Platform</h2>
+					<p class="lead">Tienda online totalmente responsive con carrito, pasarela de pago y optimización para conversiones.</p>
+					<div class="detail-grid">
+						<div class="detail-media"><img src="https://picsum.photos/800/400?random=11" alt="E-commerce preview" loading="lazy" /></div>
+						<div class="detail-info">
+							<h3>Resumen</h3>
+							<p>Desarrollé la interfaz, el flujo de checkout y la integración con la API de pagos. Enfocado en accesibilidad y rendimiento.</p>
+							<h4>Tecnologías</h4>
+							<p>HTML · CSS · JavaScript · Stripe API</p>
+						</div>
+					</div>
+					<a href="#projects" class="btn">Volver a proyectos</a>
+				</article>
+			</div>
+		</section>
+
+		<section id="project-dashboard" class="project-detail section">
+			<div class="container">
+				<article class="detail-card">
+					<h2>Analytics Dashboard</h2>
+					<p class="lead">Panel interactivo en tiempo real con soporte a modo oscuro y gráficas personalizadas.</p>
+					<div class="detail-grid">
+						<div class="detail-media"><img src="https://picsum.photos/800/400?random=12" alt="Dashboard preview" loading="lazy" /></div>
+						<div class="detail-info">
+							<h3>Resumen</h3>
+							<p>Implementé visualizaciones con librerías de gráficas, optimicé la carga de datos y añadí controles para filtros y exportación.</p>
+							<h4>Tecnologías</h4>
+							<p>Charts · Fetch API · CSS Grid</p>
+						</div>
+					</div>
+					<a href="#projects" class="btn">Volver a proyectos</a>
+				</article>
+			</div>
+		</section>
+
+		<section id="project-landing" class="project-detail section">
+			<div class="container">
+				<article class="detail-card">
+					<h2>App Landing Page</h2>
+					<p class="lead">Landing optimizada para conversiones con animaciones y pruebas A/B.</p>
+					<div class="detail-grid">
+						<div class="detail-media"><img src="https://picsum.photos/800/400?random=13" alt="Landing preview" loading="lazy" /></div>
+						<div class="detail-info">
+							<h3>Resumen</h3>
+							<p>Diseñé y maqueté la landing, incorporando microinteracciones y tests para mejorar CTR.</p>
+							<h4>Tecnologías</h4>
+							<p>Animation · SEO · Progressive Enhancement</p>
+						</div>
+					</div>
+					<a href="#projects" class="btn">Volver a proyectos</a>
+				</article>
+			</div>
+		</section>
+
+		<!-- Pricing / Services Section -->
+		<section id="services" class="section services">
+			<div class="container">
+				<h2 class="section-title animate-on-scroll">Servicios & Precios</h2>
+				<p class="section-intro animate-on-scroll">Ofrezco paquetes desde prototipos hasta desarrollo completo. Elige el que mejor se adapte a tu proyecto.</p>
+				<div class="pricing-grid" data-reveal-stagger>
+					<div class="pricing-card">
+						<h3>Starter</h3>
+						<p class="price">€499</p>
+						<ul>
+							<li>Landing básica</li>
+							<li>Responsive</li>
+							<li>1 revisión</li>
+						</ul>
+						<a href="#contact" class="btn">Contratar</a>
+					</div>
+					<div class="pricing-card popular">
+						<h3>Pro</h3>
+						<p class="price">€1,299</p>
+						<ul>
+							<li>Web completa (hasta 6 páginas)</li>
+							<li>Optimización y SEO básico</li>
+							<li>3 revisiones</li>
+						</ul>
+						<a href="#contact" class="btn btn-primary">Contratar</a>
+					</div>
+					<div class="pricing-card">
+						<h3>Studio</h3>
+						<p class="price">€2,499</p>
+						<ul>
+							<li>Desarrollo completo + CMS</li>
+							<li>Performance y accesibilidad avanzada</li>
+							<li>Soporte 3 meses</li>
+						</ul>
+						<a href="#contact" class="btn">Contratar</a>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -150,6 +285,7 @@
 		</div>
 	</footer>
 
-	
+	<div id="scroll-progress"></div>
+
 </body>
 </html>

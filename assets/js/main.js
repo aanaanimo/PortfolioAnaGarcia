@@ -366,3 +366,11 @@ window.cleanupScrollObservers = () => {
 	staggerObserver.disconnect();
 	console.log('🧹 Observers cleaned up');
 };
+// Scroll progress bar
+window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (scrollTop / docHeight) * 100;
+
+    document.getElementById("scroll-progress").style.width = scrolled + "%";
+});
