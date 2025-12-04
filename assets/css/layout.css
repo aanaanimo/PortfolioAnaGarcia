@@ -1,15 +1,19 @@
-/* Layout: fixed nav offset + hero/home section */
+/* --------------------------------------------------------------------------
+   LAYOUT.CSS
+   
+   Estilos para layout, hero section, y animaciones de scroll
+   -------------------------------------------------------------------------- */
+
 :root {
-	/* sensible default nav height used to offset fixed navigation */
 	--nav-height: 64px;
 }
 
-/* Make sure main content isn't hidden under the fixed navigation */
+/* Make sure main content isn't hidden under fixed nav */
 main {
 	padding-top: var(--nav-height);
 }
 
-/* Full-screen hero / home section */
+/* Full-screen hero section */
 .hero {
 	position: relative;
 	min-height: calc(100vh - var(--nav-height));
@@ -21,7 +25,6 @@ main {
 	padding: var(--space-2xl) 0;
 }
 
-/* decorative background layer for hero */
 .hero-bg {
 	position: absolute;
 	inset: 0;
@@ -29,7 +32,6 @@ main {
 	background: linear-gradient(180deg, rgba(99,102,241,0.06) 0%, rgba(15,15,15,0.02) 60%);
 }
 
-/* Foreground content should sit above the bg and not be clipped */
 .hero-content {
 	position: relative;
 	z-index: 2;
@@ -37,14 +39,6 @@ main {
 	padding: var(--space-lg);
 }
 
-/* Ensure CTA button is fully visible and has proper spacing */
-.btn {
-	position: relative; /* avoid being affected by parent stacking contexts */
-	z-index: 3;
-	padding: var(--space-sm) var(--space-lg);
-}
-
-/* Hero headline (más titular, acorde a la estética) */
 .hero-title {
 	font-family: 'Delight', var(--font-sans);
 	font-weight: 700;
@@ -52,15 +46,11 @@ main {
 	line-height: 1;
 	letter-spacing: -0.01em;
 	margin: 0 0 var(--space-md);
-
-	/* Lime gradient clipped to text */
 	background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover) 70%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 	color: transparent;
-
-	/* Stronger depth + subtle lime glow */
 	text-shadow: 0 10px 30px rgba(0,0,0,0.65), 0 0 18px rgba(183,255,0,0.08);
 	padding: 0 var(--space-sm);
 }
@@ -76,26 +66,91 @@ main {
 	margin-bottom: var(--space-lg);
 }
 
-/* Section titles throughout the site use the display font too */
-.section-title {
-	font-family: 'Delight', var(--font-sans);
-	font-weight: var(--font-weight-semibold);
-	font-size: var(--text-3xl);
-	letter-spacing: -0.01em;
-	color: var(--color-text);
-	margin-bottom: var(--space-xl);
-}
-
 @media (min-width: 1200px) {
 	.hero-title {
-		/* increase the headline on very large screens */
 		font-size: clamp(2.75rem, 2.25rem + 3.5vw, 5rem);
 	}
 }
 
-/* Small screens: reduce the nav offset if necessary */
 @media (max-width: 640px) {
 	:root { --nav-height: 56px; }
 	main { padding-top: var(--nav-height); }
-	.hero { padding: calc(var(--space-lg)) 0; }
+	.hero { padding: var(--space-lg) 0; }
+}
+
+/* --------------------------------------------------------------------------
+   SCROLL REVEAL ANIMATIONS (IntersectionObserver-driven)
+   -------------------------------------------------------------------------- */
+
+.animate-on-scroll {
+	opacity: 0;
+	transform: translateY(30px);
+	transition: opacity var(--duration-normal) var(--ease-out),
+	            transform var(--duration-normal) var(--ease-out);
+}
+
+.animate-on-scroll.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   STAGGERED REVEAL ANIMATION
+   -------------------------------------------------------------------------- */
+
+[data-reveal-stagger] > * {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.5s var(--ease-out),
+	            transform 0.5s var(--ease-out);
+}
+
+[data-reveal-stagger].revealed > *:nth-child(1) { transition-delay: 0.1s; }
+[data-reveal-stagger].revealed > *:nth-child(2) { transition-delay: 0.2s; }
+[data-reveal-stagger].revealed > *:nth-child(3) { transition-delay: 0.3s; }
+[data-reveal-stagger].revealed > *:nth-child(4) { transition-delay: 0.4s; }
+[data-reveal-stagger].revealed > *:nth-child(5) { transition-delay: 0.5s; }
+[data-reveal-stagger].revealed > *:nth-child(6) { transition-delay: 0.6s; }
+
+[data-reveal-stagger].revealed > * {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY: REDUCED MOTION
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.animate-on-scroll,
+	[data-reveal-stagger] > * {
+		opacity: 1;
+		transform: none;
+	}
+
+	.skill-fill {
+		width: var(--fill);
+		transition: none;
+	}
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: 4px;
+	background: #acff26;
+	z-index: 9999;
+	transition: width 0.15s ease-out;
 }

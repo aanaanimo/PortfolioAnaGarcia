@@ -1,137 +1,90 @@
-/* --------------------------------------------------------------------------
-   2. CSS RESET & BASE STYLES
+/* 
+   ════════════════════════════════════════════════════════════════════════════
+   COMPONENTS.CSS - GUÍA RÁPIDA DE CONTENIDOS
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 ÍNDICE DE SECCIONES:
+   
+   1. BUTTONS (línea ~20)
+      - .btn: Estilos base del botón (color lima, hover)
+   
+   2. ABOUT SECTION (línea ~30)
+      - .about: Contenedor About
+      - .about-container: Layout con posicionamiento
+      - .about-profile: Foto perfil (top-right desktop, centered mobile)
+      - .about-grid: Grid 2 columnas
+      - .about-text: Párrafos
+   
+   3. SKILLS GRID (línea ~120)
+      - .skills-grid: Grid 2x2
+      - .skill-card: Tarjetas individuales
+      - .skill-bar: Barra de progreso
+      - [data-reveal-stagger].revealed .skill-fill: Animación de barras
+   
+   4. PROJECTS SECTION (línea ~160)
+      - .projects-grid: Grid responsivo (1→2→3 columnas)
+      - .project-card: Card con hover scale
+      - .project-image: Imagen 4/3 con zoom hover
+      - .project-content: Contenido texto
+      - .project-tags: Tags de tecnologías
+   
+   5. SERVICES/PRICING (línea ~220)
+      - .services: Sección con fondo oscuro
+      - .pricing-grid: Grid auto-fit
+      - .pricing-card: Tarjeta individual
+      - .pricing-card.popular: Destaque con transform
+   
+   6. CONTACT SECTION (línea ~280)
+      - .contact: Contenedor
+      - .contact-content .btn: Botón CENTRADO
+      - .social-links: Enlaces redes sociales
+   
+   7. FOOTER (línea ~310)
+      - .footer: Contenedor footer
+      - .back-to-top: Botón volver arriba (circular)
+   
+   8. ANIMATIONS & ACCESSIBILITY (línea ~340)
+      - .animate-on-scroll: Fade-in al entrar viewport
+      - [data-reveal-stagger]: Stagger animations
+      - @media (prefers-reduced-motion): Respeta preferencias usuario
+   
+   9. PROSE & TEXT UTILITIES (línea ~420)
+      - .prose-two-col: Dos columnas justificadas
+      - Reglas para headings, cards, imágenes
+      - Responsive: single column en <900px
+   
+   10. LAYOUT & HERO (línea ~480)
+       - .hero: Full viewport hero
+       - .hero-title: Lime gradient text
+       - .hero-subtitle: Uppercase accent
+       - .section-title: Títulos de sección
+   
+   11. NAVIGATION (línea ~560)
+       - .nav: Fixed navbar
+       - .nav-logo / .nav-links: Logo y links
+   
+   ════════════════════════════════════════════════════════════════════════════
+*/
 
-   🎓 WHY A CSS RESET?
-   Browsers apply default styles (margins, paddings, fonts) that vary between
-   browsers. A reset creates a consistent baseline so YOUR styles are in control.
+/* ════════════════════════════════════════════════════════════════════════════
+   IMPORTAR TIPOGRAFÍAS
+   ════════════════════════════════════════════════════════════════════════════ */
 
-   💡 MODERN RESET PHILOSOPHY:
-   We're not removing ALL defaults (like the old "CSS Reset" approach).
-   Instead, we selectively normalize the most problematic differences while
-   keeping useful defaults like list markers in appropriate contexts.
-   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@100;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/*
- * UNIVERSAL BOX-SIZING
- *
- * border-box includes padding and border in the element's total width/height.
- * This makes sizing predictable: a 200px box stays 200px even with padding.
- *
- * Without this: width: 200px + padding: 20px = actual width of 240px 😱
- * With this:    width: 200px + padding: 20px = actual width of 200px ✅
- */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-/*
- * SMOOTH SCROLLING
- *
- * Native CSS smooth scrolling for anchor links. No JavaScript needed!
- * This is automatically disabled when prefers-reduced-motion is set.
- */
-html {
-	scroll-behavior: smooth;
-}
-
-/*
- * BASE TYPOGRAPHY
- *
- * System font stack: Uses the user's OS font for familiarity and performance.
- * No font files to download = faster page load!
- *
- * Line-height 1.6 is optimal for body text readability (1.5-1.7 range).
- */
-body {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-	font-size: var(--text-base);  /* Uses our fluid typography variable */
-	line-height: 1.6;
-	color: var(--color-text);
-	background-color: var(--color-bg);
-}
-
-/*
- * RESPONSIVE IMAGES
- *
- * max-width: 100% prevents images from overflowing their containers.
- * height: auto maintains aspect ratio when width changes.
- * display: block removes the inline whitespace gap below images.
- */
-img {
-	max-width: 100%;
-	height: auto;
-	display: block;
-}
-
-/*
- * LINK RESET
- *
- * Inherit color from parent and remove underline by default.
- * We'll add specific link styles where needed.
- */
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-/* --------------------------------------------------------------------------
-   SKIP LINK (ACCESSIBILITY)
-
-   🎓 WHY SKIP LINKS?
-   Screen reader and keyboard users shouldn't have to tab through the entire
-   navigation on every page. A skip link lets them jump directly to main content.
-
-   The link is hidden off-screen until focused, then slides into view.
-   This is a WCAG 2.1 Level A requirement for accessible navigation.
-   -------------------------------------------------------------------------- */
-.skip-link {
-	position: absolute;
-	top: -100%;                       /* Hidden above viewport */
-	left: 50%;
-	transform: translateX(-50%);      /* Center horizontally */
-	background: var(--color-accent);
-	color: white;
-	padding: var(--space-sm) var(--space-md);
-	border-radius: 0 0 8px 8px;       /* Rounded bottom corners only */
-	z-index: 1000;                    /* Above everything */
-	transition: top 0.3s;
-}
-
-.skip-link:focus {
-	top: 0;  /* Slides into view when focused via keyboard */
-}
-/* --------------------------------------------------------------------------
-   3. Layout Components
-   -------------------------------------------------------------------------- */
-.container {
-	width: min(90%, 1200px);
-	margin-inline: auto;
-}
-
-.section {
-	padding: var(--space-2xl) 0;
-}
-
-.section-title {
-	font-size: var(--text-3xl);
-	font-weight: 700;
-	margin-bottom: var(--space-xl);
-	text-align: center;
-}
-
+/* ════════════════════════════════════════════════════════════════════════════
+   1. BUTTONS
+   ════════════════════════════════════════════════════════════════════════════ */
 
 /* --------------------------------------------------------------------------
-   6. Button
+   BUTTON
    -------------------------------------------------------------------------- */
 .btn {
 	display: inline-block;
 	padding: var(--space-sm) var(--space-lg);
 	background: var(--color-accent);
-	color: #070708; /* changed to black for better contrast against lime */
+	color: #070708;
 	font-weight: 600;
 	border-radius: 8px;
 	transition: background 0.3s, transform 0.3s;
@@ -143,6 +96,14 @@ a {
 	transform: translateY(-2px);
 	color: #070708; /* keep text readable on hover */
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   2. ABOUT SECTION
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Sección "Sobre mí" con foto perfil (top-right desktop)
+   📍 Clases principales: .about, .about-profile, .about-grid
+*/
 
 /* --------------------------------------------------------------------------
    7. About Section
@@ -222,6 +183,15 @@ a {
 	color: var(--color-text-muted);
 }
 
+/* ════════════════════════════════════════════════════════════════════════════
+   3. SKILLS GRID
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Grid 2x2 de habilidades con emoji y barras de progreso
+   📍 Clases principales: .skills-grid, .skill-card, .skill-bar
+   📍 Animación: Barras se llenan con [data-reveal-stagger].revealed
+*/
+
 .skills-grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -265,6 +235,15 @@ a {
 [data-reveal-stagger].revealed .skill-fill {
 	width: var(--fill);
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   4. PROJECTS SECTION
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Grid de proyectos responsivo (1 col mobile → 3 col desktop)
+   📍 Clases principales: .projects-grid, .project-card, .project-image
+   📍 Hover: Scale 1.05 en imagen + translateY en card
+*/
 
 /* --------------------------------------------------------------------------
    8. Projects Section
@@ -343,6 +322,92 @@ a {
 	color: var(--color-accent);
 }
 
+/* ════════════════════════════════════════════════════════════════════════════
+   5. SERVICES / PRICING
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Sección pricing con 3 tarjetas (Starter, Pro, Studio)
+   📍 Clases principales: .services, .pricing-grid, .pricing-card
+   📍 Especial: .pricing-card.popular = elevada con borde lime
+*/
+
+.services {
+	background: #070708; /* fondo negro puro cercano a lo pedido */
+	color: #e6e7eb;
+}
+
+.services .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pricing-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: var(--space-md);
+	width: 100%;
+	max-width: 1100px;
+	margin-top: var(--space-md);
+	padding: var(--space-md);
+	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+	border-radius: 12px;
+}
+
+.pricing-card {
+	background: rgba(255,255,255,0.03);
+	color: inherit;
+	padding: var(--space-md);
+	border-radius: 12px;
+	text-align: center;
+	box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+	border: 1px solid rgba(255,255,255,0.03);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.pricing-card h3 { margin-top: 0; color: #ffffff; }
+.pricing-card .price {
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: var(--color-accent);
+	margin: var(--space-md) 0;
+}
+
+.pricing-card ul { list-style: none; padding: 0; margin: 0 0 var(--space-md) 0; }
+.pricing-card li { color: #d8d9db; margin-bottom: 0.5rem; }
+
+.pricing-card a.btn { align-self: center; margin-top: var(--space-sm); }
+
+/* Destacar la tarjeta popular */
+.pricing-card.popular {
+	transform: translateY(-8px);
+	border: 1px solid rgba(172,255,38,0.18); /* ligero borde acorde al acento */
+	background: linear-gradient(180deg, rgba(172,255,38,0.04), rgba(255,255,255,0.02));
+}
+
+@media (min-width: 768px) {
+	.pricing-grid { padding: var(--space-lg); }
+}
+
+/* Asegurar contraste y legibilidad del texto dentro de services */
+.services .section-title,
+.services .section-intro,
+.services .pricing-card h3,
+.services .pricing-card p {
+	color: #eceff1;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   6. CONTACT SECTION
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Sección de contacto con botón CENTRADO
+   📍 Clases principales: .contact, .contact-content, .social-links
+   📍 Especial: .contact-content .btn CENTRADO con margin auto
+*/
+
 /* --------------------------------------------------------------------------
    9. Contact Section
    -------------------------------------------------------------------------- */
@@ -372,6 +437,14 @@ a {
 .social-links a:hover {
 	color: var(--color-accent);
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   7. FOOTER
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Footer con copyright y botón back-to-top
+   📍 Clases principales: .footer, .back-to-top
+*/
 
 /* --------------------------------------------------------------------------
    10. Footer
@@ -405,30 +478,17 @@ a {
 	transform: translateY(-3px);
 }
 
+/* ════════════════════════════════════════════════════════════════════════════
+   8. ANIMATIONS & ACCESSIBILITY
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Scroll reveal animations + respeto a prefers-reduced-motion
+   📍 Clases principales: .animate-on-scroll, [data-reveal-stagger]
+   📍 WCAG: Respeta preferencias de accesibilidad del usuario
+*/
+
 /* --------------------------------------------------------------------------
    11. SCROLL REVEAL ANIMATIONS (IntersectionObserver-driven)
-
-   🎓 THE CSS + JAVASCRIPT PARTNERSHIP:
-   The JavaScript IntersectionObserver (in main.js) adds classes when elements
-   enter the viewport. CSS handles the actual animation via transitions.
-
-   This separation of concerns is powerful:
-   - JS: "When should the animation start?" (viewport detection)
-   - CSS: "How should the animation look?" (visual effects)
-
-   📐 THE PATTERN:
-   1. Elements start with opacity: 0 and transform: translateY(30px)
-   2. JavaScript adds .visible class when element enters viewport
-   3. CSS transitions smoothly animate to opacity: 1 and translateY(0)
-
-   ⚡ PERFORMANCE NOTE:
-   We ONLY animate `transform` and `opacity` because these properties:
-   - Don't trigger layout recalculation (expensive!)
-   - Don't trigger repaint (also expensive!)
-   - Run on the GPU compositor thread (fast! 60fps!)
-
-   NEVER animate: width, height, margin, padding, top, left, etc.
-   These trigger layout and will cause jank (stuttering).
    -------------------------------------------------------------------------- */
 
 /*
@@ -459,26 +519,7 @@ a {
 	transform: translateY(0); /* Move to final position */
 }
 
-/* --------------------------------------------------------------------------
-   STAGGERED REVEAL ANIMATION
-
-   🎓 WHAT IS STAGGERING?
-   Staggering means animating children elements one after another instead of
-   all at once. This creates a "cascade" or "wave" effect that draws the eye
-   and feels more dynamic than everything appearing simultaneously.
-
-   📐 HOW IT WORKS:
-   1. Parent has [data-reveal-stagger] attribute
-   2. All children start invisible (opacity: 0, translateY)
-   3. When parent gets .revealed class, children animate with increasing delays
-   4. transition-delay creates the stagger: 0.1s, 0.2s, 0.3s, etc.
-
-   💡 DATA ATTRIBUTES:
-   We use data-* attributes instead of classes because:
-   - They're semantic: "this element reveals with stagger"
-   - They can hold values: data-stagger-delay="0.2s" (future enhancement)
-   - They're easily queryable: [data-reveal-stagger]
-   -------------------------------------------------------------------------- */
+/* STAGGERED REVEAL ANIMATION */
 [data-reveal-stagger] > * {
 	opacity: 0;
 	transform: translateY(20px);
@@ -670,13 +711,17 @@ a {
     transition: width 0.15s ease-out;
 }
 
-/* --------------------------------------------------------------------------
-   PROSE: two-column justified text (apply only to textual blocks)
+/* ════════════════════════════════════════════════════════════════════════════
+   9. PROSE & TEXT UTILITIES
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Textos en dos columnas justificadas con hyphenation automática
+   📍 Clases principales: .prose-two-col, .about-text-col
+   📍 Responsive: 1 columna en pantallas <900px
+*/
 
-   Use the utility class `.prose-two-col` on any container whose textual
-   content should flow in two justified columns. We also apply the rule
-   to common textual containers to avoid changing structural elements like
-   cards or images.
+/* --------------------------------------------------------------------------
+   PROSE: two-column justified text
    -------------------------------------------------------------------------- */
 .prose-two-col,
 .about-text-col,
@@ -757,7 +802,17 @@ a {
 		column-gap: 1rem;
 		text-align: left; /* left aligned on small screens improves readability */
 	}
-}.about-grid {
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   10. LAYOUT & HERO
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Hero section full viewport + títulos con gradiente lima
+   📍 Clases principales: .hero, .hero-title, .hero-subtitle, .section-title
+*/
+
+.about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem; /* AQUI SE CREA EL ESPACIO */
@@ -814,8 +869,8 @@ main {
 
 /* Hero headline (más titular, acorde a la estética) */
 .hero-title {
-	font-family: 'Delight', var(--font-sans);
-	font-weight: 700;
+	font-family: 'Press Start 2P', cursive;
+	font-weight: 400;
 	font-size: var(--text-4xl);
 	line-height: 1;
 	letter-spacing: -0.01em;
@@ -834,8 +889,8 @@ main {
 }
 
 .hero-subtitle {
-	font-family: 'Delight', var(--font-sans);
-	font-weight: 600;
+	font-family: 'Press Start 2P', cursive;
+	font-weight: 400;
 	font-size: var(--text-xl);
 	text-transform: uppercase;
 	letter-spacing: 0.12em;
@@ -846,8 +901,8 @@ main {
 
 /* Section titles throughout the site use the display font too */
 .section-title {
-	font-family: 'Delight', var(--font-sans);
-	font-weight: var(--font-weight-semibold);
+	font-family: 'Press Start 2P', cursive;
+	font-weight: 400;
 	font-size: var(--text-3xl);
 	letter-spacing: -0.01em;
 	color: var(--color-text);
@@ -867,6 +922,15 @@ main {
 	main { padding-top: var(--nav-height); }
 	.hero { padding: calc(var(--space-lg)) 0; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   11. NAVIGATION
+   ════════════════════════════════════════════════════════════════════════════
+   
+   📍 Uso: Navbar fija con logo y navegación links
+   📍 Clases principales: .nav, .nav-logo, .nav-links
+   📍 Features: Fixed position, backdrop blur, responsive (hidden en mobile)
+*/
 
 /* --------------------------------------------------------------------------
    4. Navigation
@@ -1082,16 +1146,7 @@ table {
    But clamp() does this automatically! You just set the boundaries.
    -------------------------------------------------------------------------- */
 
-/* Optional local/webfont: Delight
-   - Place font file at assets/fonts/Delight.woff2 for best results.
-   - If not present, browser will use fallbacks. */
-@font-face {
-	font-family: 'Delight';
-	src: local('Delight'), url('/assets/fonts/Delight.woff2') format('woff2');
-	font-weight: 400 800;
-	font-style: normal;
-	font-display: swap;
-}
+/* Optional local/webfont: Saira font from Google Fonts */
 
 :root {
 	/*
@@ -1151,7 +1206,7 @@ table {
 	--duration-normal: 0.6s;                      /* Default animation duration */
 
 	/* TYPOGRAPHY TOKENS (design tokens for typography) */
-	--font-sans: 'Delight', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-sans: 'Saira', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
 	--line-height-base: 1.6;
 	--font-weight-regular: 400;
@@ -1162,13 +1217,54 @@ table {
 
 /* Fondo cuadriculado lima con parallax */
 body {
-    /* Retícula más visible */
-    background-image:
-        linear-gradient(to right, rgba(183, 255, 0, 0.25) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(183, 255, 0, 0.25) 1px, transparent 1px);
+	/* Tipografía base Saira */
+	font-family: 'Saira', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-size: var(--text-base);
+	line-height: 1.6;
+	color: var(--color-text);
+	font-weight: 400;
 
-    background-size: 32px 32px; /* tamaño del cuadrado */
-    background-attachment: fixed; /* parallax en todo el documento */
+	/* Retícula más visible */
+	background-image:
+		linear-gradient(to right, rgba(183, 255, 0, 0.25) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(183, 255, 0, 0.25) 1px, transparent 1px);
 
-    background-color: var(--color-bg); /* mantiene tu fondo oscuro */
+	background-size: 32px 32px; /* tamaño del cuadrado */
+	background-attachment: fixed; /* parallax en todo el documento */
+
+	background-color: var(--color-bg); /* mantiene tu fondo oscuro */
 }
+
+/* --------------------------------------------------------------------------
+   Contact Button - Centered
+   -------------------------------------------------------------------------- */
+.contact-content .btn {
+	display: block;
+	margin: var(--space-lg) auto 0;
+	width: fit-content;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   FIN DE COMPONENTS.CSS
+   ════════════════════════════════════════════════════════════════════════════
+   
+   ✨ RESUMEN RÁPIDO:
+   
+   • Botones lime con hover effect
+   • About section con foto top-right (responsive)
+   • Grid 2x2 de skills con barras animadas
+   • Grid responsive de proyectos (1→3 columnas)
+   • Pricing section con 3 tarjetas (popular destacada)
+   • Contact centrado con redes sociales
+   • Footer con botón back-to-top
+   • Scroll reveal animations con prefers-reduced-motion
+   • Textos en dos columnas justificadas (responsive)
+   • Hero con gradiente lima + títulos especiales
+   • Navbar fija responsive
+   
+   🎨 COLORES: Tema oscuro (bg #070708) + Lima accent (#b7ff00)
+   📐 TIPOGRAFÍA: "Saira" para body + "Press Start 2P" para headings (retro gaming)
+   🔧 ESPACIADO: Fluido con clamp() en todo el diseño
+   
+   ════════════════════════════════════════════════════════════════════════════
+*/
