@@ -217,3 +217,37 @@ a {
 	letter-spacing: -0.01em;
 	color: var(--color-text);
 }
+
+/* --------------------------------------------------------------------------
+   OVERRIDE: Contenedores de detalle de proyecto (más cerca del margen)
+   -------------------------------------------------------------------------- */
+.project-detail .container {
+    /* ocupar casi todo el ancho disponible pero respetar padding mínimo */
+    width: calc(100% - 1rem);
+    max-width: 1400px;
+    /* acercar al margen izquierdo (casi pegado) y mantener margen derecho automático */
+    margin-left: clamp(0.25rem, 1vw, 0.75rem);
+    margin-right: auto;
+    /* padding horizontal mínimo para evitar tocar bordes en pantallas muy pequeñas */
+    padding-inline: clamp(0.5rem, 1vw, 1rem);
+}
+
+/* Ajuste adicional: centrar el contenido interno si se quiere más consistencia en tarjetas */
+.project-detail .detail-card {
+    max-width: none; /* permitir que el contenido use el espacio extra */
+}
+
+.section {
+	padding: var(--space-2xl) 0;
+}
+/* Fuente Monsieur para 'Jane Developer' */
+.hero-title {
+    font-family: 'Monsieur La Doulaise', cursive !important;
+}
+
+/* Subtítulos del apartado de proyectos */
+.project-content p,
+.section-intro {
+    font-size: 1.25rem; /* más grande */
+    color: #C7FF4F; /* verde lima */
+}
