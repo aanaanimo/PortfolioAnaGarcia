@@ -1,253 +1,189 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/* ================================
+   VARIABLES DE DISEÑO
+================================ */
+:root {
+  /* Colores */
+  --lime: #b4ff00;
+  --lime-soft: rgba(180, 255, 0, 0.25);
+  --black: #0b0b0b;
+  --dark: #111;
+  --white: #ffffff;
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+  /* Grid */
+  --grid-size: 40px;
+
+  /* UI */
+  --radius: 16px;
+  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.35);
+
+  /* Tipografía */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
 }
 
-/* --------------------------------------------------------------------------
-   BASE STYLES
-   -------------------------------------------------------------------------- */
-
-/*
- * UNIVERSAL BOX-SIZING
- */
+/* ================================
+   RESET BÁSICO
+================================ */
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/*
- * SMOOTH SCROLLING
- */
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-/*
- * BASE TYPOGRAPHY
- */
+/* ================================
+   BASE
+================================ */
 body {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-	font-size: var(--text-base);
-	line-height: 1.6;
-	color: var(--color-text);
-	background-color: var(--color-bg);
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--white);
+
+  /* Fondo cuadrícula verde lima */
+  background-color: var(--black);
+  background-image: linear-gradient(
+      to right,
+      var(--lime-soft) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--lime-soft) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
 }
 
-/*
- * RESPONSIVE IMAGES
- */
-img {
-	max-width: 100%;
-	height: auto;
-	display: block;
+/* ================================
+   TIPOGRAFÍA GENERAL
+================================ */
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.6em;
+  font-weight: 600;
 }
 
-/*
- * LINK RESET
- */
+p {
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* ================================
+   ABOUT — TIPOGRAFÍA
+================================ */
+/* Títulos grandes del Sobre Mí */
+#about .section-title {
+  font-family: "Monsieur La Doulaise", cursive;
+  font-weight: 400;
+}
+
+/* Subtítulos internos (Trayectoria, skills, etc.) */
+#about h3,
+#about h4,
+#about .skill-card h3 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* ================================
+   FUTURE PROJECTS — TÍTULO
+================================ */
+#future-projects .section-title,
+#future-projects h2 {
+  font-family: "Monsieur La Doulaise", cursive;
+  font-weight: 400;
+}
+
+/* ================================
+   LINKS Y BOTONES
+================================ */
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
-/* --------------------------------------------------------------------------
-   SKIP LINK (ACCESSIBILITY)
-   -------------------------------------------------------------------------- */
-.skip-link {
-	position: absolute;
-	top: -100%;
-	left: 50%;
-	transform: translateX(-50%);
-	background: var(--color-accent);
-	color: white;
-	padding: var(--space-sm) var(--space-md);
-	border-radius: 0 0 8px 8px;
-	z-index: 1000;
-	transition: top 0.3s;
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  background: var(--lime);
+  color: #000;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.skip-link:focus {
-	top: 0;
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px var(--lime);
 }
 
-/* --------------------------------------------------------------------------
-   LAYOUT COMPONENTS
-   -------------------------------------------------------------------------- */
-.container {
-	width: min(90%, 1200px);
-	margin-inline: auto;
+.btn-primary {
+  background: var(--lime);
 }
 
-.section {
-	padding: var(--space-2xl) 0;
+.btn-link {
+  background: transparent;
+  color: var(--lime);
+  padding: 0;
+}
+/* ================================
+   CURSOR SHOOTING STAR
+================================ */
+
+.cursor-star {
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+  z-index: 9999;
+
+  background: radial-gradient(circle, #b4ff00 0%, transparent 70%);
+  border-radius: 50%;
+
+  opacity: 0;
+  animation: none;
 }
 
-.section-title {
-	font-size: var(--text-3xl);
-	font-weight: 700;
-	margin-bottom: var(--space-xl);
-	text-align: center;
-	font-family: 'Delight', var(--font-sans);
-	letter-spacing: -0.01em;
-	color: var(--color-text);
+/* Cola de la estrella */
+.cursor-star::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(180, 255, 0, 0.8), transparent);
+  transform: translateY(-50%);
 }
 
-/* --------------------------------------------------------------------------
-   OVERRIDE: Contenedores de detalle de proyecto (más cerca del margen)
-   -------------------------------------------------------------------------- */
-.project-detail .container {
-    /* ocupar casi todo el ancho disponible pero respetar padding mínimo */
-    width: calc(100% - 1rem);
-    max-width: 1400px;
-    /* acercar al margen izquierdo (casi pegado) y mantener margen derecho automático */
-    margin-left: clamp(0.25rem, 1vw, 0.75rem);
-    margin-right: auto;
-    /* padding horizontal mínimo para evitar tocar bordes en pantallas muy pequeñas */
-    padding-inline: clamp(0.5rem, 1vw, 1rem);
+/* ================================
+   CURSOR STAR
+================================ */
+
+.cursor-star {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+  z-index: 9999;
+
+  background: radial-gradient(circle, #b4ff00 0%, transparent 70%);
+  border-radius: 50%;
+
+  opacity: 0.9;
 }
 
-/* Ajuste adicional: centrar el contenido interno si se quiere más consistencia en tarjetas */
-.project-detail .detail-card {
-    max-width: none; /* permitir que el contenido use el espacio extra */
-}
-
-.section {
-	padding: var(--space-2xl) 0;
-}
-/* Fuente Monsieur para 'Jane Developer' */
-.hero-title {
-    font-family: 'Monsieur La Doulaise', cursive !important;
-}
-
-/* Subtítulos del apartado de proyectos */
-.project-content p,
-.section-intro {
-    font-size: 1.25rem; /* más grande */
-    color: #C7FF4F; /* verde lima */
+/* Cola */
+.cursor-star::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(180, 255, 0, 0.8), transparent);
+  transform: translateY(-50%);
 }

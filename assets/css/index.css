@@ -1,9 +1,22 @@
-/*
- * ─────────────────────────────────────────────
- *  CSS Barrel Index
- * ─────────────────────────────────────────────
+/* --------------------------------------------------------------------------
+   index.css
 
- */
+   Purpose: Single import point for the site. This project uses a
+   consolidated `base.css` (contains reset, tokens, layout and components).
+
+   Notes:
+   - Keep this file minimal. Importing `base.css` only avoids accidental
+     duplicate cascade from multiple files.
+------------------------------------------------------------------------- */
+
+/* Barrel file: import core order to preserve cascade and overrides
+  1) reset: normalize browser styles
+  2) theme: design tokens and color variables
+  3) base: consolidated base rules (typography, utilities)
+  4) layout: hero, spacing, layout helpers
+  5) components: buttons, cards, sections
+  6) navigation: nav-specific rules (fixed nav)
+*/
 
 @import url("reset.css");
 @import url("theme.css");

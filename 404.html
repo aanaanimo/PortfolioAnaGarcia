@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error 404 — Página no encontrada</title>
+
+    <!-- Monsieur La Doulaise: solo para el 404 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ================================
+         VARIABLES
+      ================================ */
+      :root {
+        --lime: #b4ff00;
+        --lime-soft: rgba(180, 255, 0, 0.25);
+        --black: #0b0b0b;
+        --white: #ffffff;
+        --grid-size: 40px;
+        --radius: 16px;
+        --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      /* ================================
+         RESET
+      ================================ */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-sans);
+        color: var(--white);
+
+        /* Fondo cuadrícula */
+        background-color: var(--black);
+        background-image: linear-gradient(
+            to right,
+            var(--lime-soft) 1px,
+            transparent 1px
+          ),
+          linear-gradient(to bottom, var(--lime-soft) 1px, transparent 1px);
+        background-size: var(--grid-size) var(--grid-size);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ================================
+         LAYOUT
+      ================================ */
+      .error-wrapper {
+        text-align: center;
+        padding: 3rem 1.5rem;
+        max-width: 560px;
+        backdrop-filter: blur(6px);
+      }
+
+      .error-code {
+        font-family: "Monsieur La Doulaise", cursive;
+        font-size: clamp(5rem, 15vw, 10rem);
+        line-height: 1;
+        color: var(--lime);
+        margin-bottom: 0.5rem;
+      }
+
+      .error-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .error-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        opacity: 0.85;
+        margin-bottom: 2rem;
+      }
+
+      /* ================================
+         BOTÓN
+      ================================ */
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 1.8rem;
+        border-radius: 999px;
+        background: var(--lime);
+        color: #000;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 0 2px var(--lime);
+      }
+
+      /* ================================
+         DETALLE DECORATIVO
+      ================================ */
+      .grid-accent {
+        margin-top: 2.5rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        opacity: 0.4;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="error-wrapper">
+      <div class="error-code">404</div>
+
+      <h1 class="error-title">Página no encontrada</h1>
+
+      <p class="error-text">
+        Parece que esta página no existe o fue movida.<br />
+        Puede que el enlace esté roto o que hayas llegado aquí por error.
+      </p>
+
+      <a href="/" class="btn">Volver al inicio</a>
+
+      <div class="grid-accent">Error · Navigation · Lost</div>
+    </main>
+  </body>
+</html>
