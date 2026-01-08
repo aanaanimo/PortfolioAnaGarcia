@@ -17,10 +17,5 @@
   5) components: buttons, cards, sections
   6) navigation: nav-specific rules (fixed nav)
 */
-
-@import url("reset.css");
-@import url("theme.css");
 @import url("base.css");
-@import url("layout.css");
 @import url("components.css");
-@import url("navigation.css");
