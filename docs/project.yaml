@@ -2,49 +2,60 @@
 # This file will be used to generate your entry in the course showroom
 
 # Basic information
-handle: your-github-username
-name: Your Full Name
-email: your-email@udit.es
+handle: ana-garcia
+name: Ana García
+email: ana.garcia@udit.es
 
 # URLs (will be auto-generated if you follow naming conventions)
-github_url: https://github.com/your-username
-project_url: https://your-username.github.io/your-project-repo
-repository_url: https://github.com/your-username/your-project-repo
+github_url: https://github.com/aanaanimo
+project_url: https://aanaanimo.github.io/PortfolioAnaGarcia/
+repository_url: https://github.com/aanaanimo/PortfolioAnaGarcia
 
 # Project details
 title:
- es: Título de tu Proyecto en Español
- en: Your Project Title in English
+  es: Plantilla de portfolio web expandible
+  en: Expandable web portfolio template
 
 abstract:
- es: |
-  Una descripción concisa de tu proyecto web en español. 
-  Explica qué construyes, para quién y por qué es importante.
- en: |
-  A concise description of your web project in English.
-  Explain what you're building, for whom, and why it matters.
+  es: |
+    Desarrollo de una plantilla de portfolio web personal, planteada como una base
+    flexible y expandible para mostrar proyectos creativos. Aunque el diseño está
+    enfocado en mi perfil, la estructura está pensada para poder añadir
+    fácilmente nuevos proyectos, secciones y contenidos en el futuro. Actualmente
+    incluye ejemplos de proyectos con información semi-inventada, utilizados como
+    demostración del funcionamiento y escalabilidad de la plantilla.
+  en: |
+    Development of a personal web portfolio template designed as a flexible and
+    expandable base for showcasing creative projects. Although the design is
+    focused on the author’s profile, the structure allows for easy addition of new
+    projects, sections, and content over time. The current version includes
+    semi-fictional project data used to demonstrate the template’s functionality
+    and scalability.
 
 # Technical tags (choose relevant ones)
 tags:
- - html5
- - css3
- - responsive-design
- - accessibility
- # Add more as relevant: javascript, sass, performance, etc.
+  - html5
+  - css3
+  - responsive-design
+  - accessibility
+  - javascript
+  - portfolio
+  - frontend
 
 # Learning objectives you're focusing on
 learning_focus:
- - semantic-html
- - mobile-first-design
- - web-accessibility
- # Add more as you progress
+  - semantic-html
+  - mobile-first-design
+  - responsive-layouts
+  - reusable-components
+  - web-accessibility
 
 # Week tracking (update as you go)
 milestones:
- week_1_setup: false
- week_2_brief: false
- week_4_metadata: false
- week_5_showcase: false
+  week_1_setup: true
+  week_2_brief: true
+  week_4_metadata: true
+  week_5_showcase: false
 
 # Optional: link to your project brief
 brief_url: project-brief.md

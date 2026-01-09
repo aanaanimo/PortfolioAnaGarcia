@@ -2,16 +2,17 @@
 
 ## Trends
 
-- [Trend 1]
-- [Trend 2]
-- [Trend 3]
+- Minimalist portfolio layouts with strong visual hierarchy
+- Dark mode interfaces with accent colors
+- Modular and card-based design systems
 
 ## Visual References
 
-- [Link or moodboard image 1]
-- [Link or moodboard image 2]
-- [Link or moodboard image 3]
+- Awwwards – Personal portfolio showcases
+- Modern frontend developer portfolios
+- Creative studio websites with clean layouts
 
 ## Theme Draft
 
-[Your project’s core concept—what it’s about]
+Personal portfolio template focused on scalability and reuse.  
+A flexible, modular design that allows new projects, sections and content to be added over time without breaking the visual structure or user experience.
